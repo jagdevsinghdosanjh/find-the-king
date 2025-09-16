@@ -26,27 +26,6 @@ if not st.session_state.game_started:
 # Game loop
 if st.session_state.game_started and st.session_state.wallet > 0:
     st.write(f"💰 Wallet: ${st.session_state.wallet}")
-
-import pandas as pd
-import os
-
-log_path = "assets/cash_won_lost/game_log.csv"
-
-# View Game History
-if os.path.exists(log_path):
-    with st.expander("📊 View Game History"):
-        df = pd.read_csv(log_path)
-        st.dataframe(df, use_container_width=True)
-
-        # Summary stats
-        st.write(f"🔢 Total Rounds Played: {len(df)}")
-        st.write(f"💰 Net Profit/Loss: ${df['Profit/Loss'].sum()}")
-
-        # Reset log
-        if st.button("🧹 Reset Game Log"):
-            os.remove(log_path)
-            st.success("Game log has been reset.")
-
     
     # Inputs
     bet_input = st.number_input("Place your bet", min_value=1, max_value=st.session_state.wallet)
