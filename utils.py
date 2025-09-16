@@ -2,6 +2,16 @@ import random
 import csv
 import os
 
+def is_csv_valid(path="assets/cash_won_lost/game_log.csv", expected_columns=8):
+    if not os.path.exists(path):
+        return True
+    with open(path, encoding='utf-8') as file:
+        for i, line in enumerate(file, start=1):
+            if len(line.strip().split(',')) != expected_columns:
+                return False
+    return True
+
+
 def shuffle_cards():
     cards = ["King", "Queen", "Jack"]
     random.shuffle(cards)

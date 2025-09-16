@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os
-from utils import shuffle_cards, evaluate_guess, get_card_image, log_game_round
+from utils import shuffle_cards, evaluate_guess, get_card_image, log_game_round, is_csv_valid
 
 st.set_page_config(page_title="Find the King", layout="centered")
 
@@ -77,6 +77,28 @@ if st.session_state.game_started and st.session_state.wallet > 0:
         st.write(f"🏁 You walk away with ${st.session_state.wallet}")
         st.session_state.game_started = False
         st.session_state.wallet = 0
+        
+# 📊 View Game History
+if os.path.exists(log_path):
+    if is_csv_valid(log_path):
+        with st.expander("📊 View Game History"):
+            df = pd.read_csv(log_path)
+            st.dataframe(df, use_container_width=True)
+
+            st.write(f"🔢 Total Rounds Played: {len(df)}")
+            st.write(f"💰 Net Profit/Loss: ${df['Profit/Loss'].sum()}")
+
+            st.line_chart(df["Wallet Balance"], use_container_width=True)
+
+            if st.button("🧹 Reset Game Log"):
+                os.remove(log_path)
+                st.success("Game log has been reset.")
+    else:
+        st.error("⚠️ Game log is malformed. Some rows have inconsistent columns.")
+        if st.button("🧹 Force Reset Game Log"):
+            os.remove(log_path)
+            st.success("Malformed log has been cleared.")
+
 
 # 📊 View Game History
 if os.path.exists(log_path):
