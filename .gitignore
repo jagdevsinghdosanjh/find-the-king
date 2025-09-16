@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+venv/
+env/
+ENV/
+*.egg-info/
+
+# Streamlit cache and logs
+.streamlit/
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# Jupyter notebooks (if used later)
+*.ipynb
+
+# Exported files (optional)
+*.csv
+*.pdf
+*.xlsx
