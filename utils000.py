@@ -22,12 +22,7 @@ def get_card_image(card_name):
     return f"assets/card_images/{card_name.lower()}.png"
 
 def log_game_round(bet, guess, king_pos, result, profit_loss, wallet):
-    folder_path = "assets/cash_won_lost"
-    log_path = os.path.join(folder_path, "game_log.csv")
-
-    # Create folder if it doesn't exist
-    os.makedirs(folder_path, exist_ok=True)
-
+    log_path = "assets/cash_won_lost/game_log.csv"
     file_exists = os.path.isfile(log_path)
 
     with open(log_path, mode='a', newline='') as file:
@@ -35,3 +30,5 @@ def log_game_round(bet, guess, king_pos, result, profit_loss, wallet):
         if not file_exists:
             writer.writerow(["Bet", "Guess", "King Position", "Result", "Profit/Loss", "Wallet Balance"])
         writer.writerow([bet, guess, king_pos, result, profit_loss, wallet])
+
+
