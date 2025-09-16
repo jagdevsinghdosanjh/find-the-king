@@ -38,3 +38,14 @@ def log_game_round(bet, guess, king_pos, result, profit_loss, wallet, initial_de
             initial_deposit, bet, guess, king_pos,
             result, profit_loss, wallet, total_won
         ])
+
+# Optional: Validate CSV structure (useful for debugging)
+def validate_game_log(path="assets/cash_won_lost/game_log.csv", expected_columns=8):
+    if not os.path.exists(path):
+        return True
+    with open(path, encoding='utf-8') as file:
+        for i, line in enumerate(file, start=1):
+            if len(line.strip().split(',')) != expected_columns:
+                print(f"⚠️ Line {i} has incorrect number of columns.")
+                return False
+    return True
