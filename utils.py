@@ -1,9 +1,4 @@
-
----
-
 ## 🧠 `utils.py`
-
-```python
 import random
 
 def shuffle_cards():
