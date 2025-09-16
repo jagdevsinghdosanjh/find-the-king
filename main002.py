@@ -8,18 +8,12 @@ if 'wallet' not in st.session_state:
     st.session_state.wallet = 0
 if 'game_started' not in st.session_state:
     st.session_state.game_started = False
-if 'initial_deposit' not in st.session_state:
-    st.session_state.initial_deposit = 0
-if 'total_won' not in st.session_state:
-    st.session_state.total_won = 0
 
 # Deposit
 if not st.session_state.game_started:
     deposit = st.number_input("💵 Enter deposit amount", min_value=1)
     if st.button("Start Game"):
         st.session_state.wallet = deposit * 2
-        st.session_state.initial_deposit = deposit
-        st.session_state.total_won = 0
         st.session_state.game_started = True
         st.success(f"Game started! Wallet: ${st.session_state.wallet}")
 
@@ -50,17 +44,8 @@ if st.session_state.game_started and st.session_state.wallet > 0:
         # Calculate profit/loss
         profit_loss = bet * 2 if "won" in result else -bet
 
-        # Update total won
-        if profit_loss > 0:
-            st.session_state.total_won += profit_loss
-
         # Log the round
-        log_game_round(
-            bet, guess, king_pos, result, profit_loss,
-            st.session_state.wallet,
-            st.session_state.initial_deposit,
-            st.session_state.total_won
-        )
+        log_game_round(bet, guess, king_pos, result, profit_loss, st.session_state.wallet)
 
     # Quit logic
     if st.button("Quit Game"):

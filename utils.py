@@ -1,4 +1,3 @@
-## 🧠 `utils.py`
 import random
 import csv
 import os
@@ -21,17 +20,21 @@ def evaluate_guess(cards, guess, bet, wallet):
 def get_card_image(card_name):
     return f"assets/card_images/{card_name.lower()}.png"
 
-def log_game_round(bet, guess, king_pos, result, profit_loss, wallet):
+def log_game_round(bet, guess, king_pos, result, profit_loss, wallet, initial_deposit, total_won):
     folder_path = "assets/cash_won_lost"
     log_path = os.path.join(folder_path, "game_log.csv")
 
-    # Create folder if it doesn't exist
     os.makedirs(folder_path, exist_ok=True)
-
     file_exists = os.path.isfile(log_path)
 
-    with open(log_path, mode='a', newline='') as file:
+    with open(log_path, mode='a', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         if not file_exists:
-            writer.writerow(["Bet", "Guess", "King Position", "Result", "Profit/Loss", "Wallet Balance"])
-        writer.writerow([bet, guess, king_pos, result, profit_loss, wallet])
+            writer.writerow([
+                "Initial Deposit", "Bet", "Guess", "King Position",
+                "Result", "Profit/Loss", "Wallet Balance", "Total Won"
+            ])
+        writer.writerow([
+            initial_deposit, bet, guess, king_pos,
+            result, profit_loss, wallet, total_won
+        ])
