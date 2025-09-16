@@ -20,10 +20,14 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Jupyter notebooks (if used later)
+# Jupyter notebooks
 *.ipynb
 
-# Exported files (optional)
+# Exported files
 *.csv
 *.pdf
 *.xlsx
+
+# Image cache or temp exports (optional)
+*.tmp
+*.bak
