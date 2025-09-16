@@ -15,3 +15,7 @@ def evaluate_guess(cards, guess, bet, wallet):
         wallet -= bet
         result = f"❌ Wrong! You lost ${bet}"
     return wallet, result, king_position
+
+def get_card_image(card_name):
+    return f"assets/card_images/{card_name.lower()}.png"
+
