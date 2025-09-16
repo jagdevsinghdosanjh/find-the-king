@@ -8,24 +8,3 @@ venv/
 env/
 ENV/
 *.egg-info/
-
-# Streamlit cache and logs
-*.log
-
-# OS-specific files
-.DS_Store
-Thumbs.db
-
-# IDE/editor folders
-.idea/
-
-# Jupyter notebooks
-*.ipynb
-
-# Exported files
-*.pdf
-*.xlsx
-
-# Image cache or temp exports (optional)
-*.tmp
-*.bak
