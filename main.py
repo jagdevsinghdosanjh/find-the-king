@@ -4,7 +4,7 @@ import os
 from utils import shuffle_cards, evaluate_guess, get_card_image, log_game_round, is_csv_valid
 
 st.set_page_config(page_title="Find the King", layout="centered")
-st.write("Welcome to Online Game - Find the King")
+st.header("Welcome to Online Game - Find the King")
 
 # Session state
 if 'wallet' not in st.session_state:
