@@ -2,9 +2,11 @@ import streamlit as st
 import pandas as pd
 import os
 from utils import shuffle_cards, evaluate_guess, get_card_image, log_game_round, is_csv_valid
+from header_footer import render_header, render_footer
 
 st.set_page_config(page_title="Find the King", layout="centered")
-st.header("Welcome to Online Game - Find the King")
+
+render_header()  # Top of the app
 
 # Session state
 if 'wallet' not in st.session_state:
@@ -111,3 +113,5 @@ if st.button("🔄 Restart Game"):
         os.remove(log_path)
 
     st.success("Game has been reset. You can start fresh with a new deposit.")
+
+render_footer() # Bottom of the app
